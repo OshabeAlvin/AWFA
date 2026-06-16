@@ -77,6 +77,7 @@
     border-radius: 2rem;
     font-weight: 500 !important;
     transition: background 0.2s !important;
+    cursor: pointer;
   }
 
   .nav-cta:hover { background: var(--soft-ink) !important; }
@@ -139,6 +140,8 @@
     font-weight: 500;
     transition: all 0.25s;
     border: 2px solid var(--terracotta);
+    cursor: pointer;
+    display: inline-block;
   }
 
   .btn-primary:hover {
@@ -383,6 +386,9 @@
     font-weight: 600;
     transition: all 0.25s;
     white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
   }
 
   .btn-white:hover {
@@ -494,7 +500,7 @@
     display: flex; align-items: center; justify-content: center; gap: 0.5rem;
     width: 100%;
     background: #25D366;
-    color: white;
+    color: #062a14;
     padding: 1rem;
     border-radius: 2rem;
     font-size: 0.95rem;
@@ -507,9 +513,22 @@
   }
 
   .btn-wa:hover {
-    background: #1ebe59;
+    background: #1ebe5b;
     transform: translateY(-2px);
   }
+
+  .form-error {
+    display: none;
+    background: rgba(220,80,60,0.12);
+    border: 1px solid rgba(220,80,60,0.3);
+    color: #ffb3a3;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-error.show { display: block; }
 
   .dh-info { position: relative; z-index: 1; }
 
@@ -914,6 +933,12 @@
 
   .modal .form-group select option { background: white; }
 
+  .modal .form-error {
+    background: rgba(196,96,58,0.08);
+    border: 1px solid rgba(196,96,58,0.25);
+    color: var(--terracotta);
+  }
+
   /* ── CART TOAST ── */
   .toast {
     position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
@@ -968,7 +993,7 @@
     <li><a href="#dear-heart">Dear Heart</a></li>
     <li><a href="#shop">Shop</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#" class="nav-cta" onclick="openSubmitModal()">Submit Your Story</a></li>
+    <li><a href="#" class="nav-cta" onclick="openSubmitModal(); return false;">Submit Your Story</a></li>
   </ul>
 </nav>
 
@@ -1083,13 +1108,14 @@
 
     <div class="dh-layout">
       <div class="dh-form-card fade-in">
+        <div class="form-error" id="dhError">Please fill in your message and a valid WhatsApp number before sending.</div>
         <div class="form-group">
           <label>Your Name (or stay anonymous)</label>
-          <input type="text" placeholder="e.g. Chiamaka or just 'anonymous'"/>
+          <input type="text" id="dhName" placeholder="e.g. Chiamaka or just 'anonymous'"/>
         </div>
         <div class="form-group">
           <label>What area of your relationship needs attention?</label>
-          <select>
+          <select id="dhTopic">
             <option value="">Choose a topic...</option>
             <option>Long distance & communication</option>
             <option>Breakup & healing</option>
@@ -1102,19 +1128,17 @@
         </div>
         <div class="form-group">
           <label>Share what's on your heart</label>
-          <textarea placeholder="Write as much or as little as you need. We read everything..."></textarea>
+          <textarea id="dhMessage" placeholder="Write as much or as little as you need. We read everything..."></textarea>
         </div>
         <div class="form-group">
           <label>Your WhatsApp number (so we can reply)</label>
-          <input type="tel" placeholder="+234 800 000 0000"/>
+          <input type="tel" id="dhPhone" placeholder="+234 800 000 0000"/>
         </div>
         <div class="whatsapp-note">
           <span class="wa-icon">🔒</span>
           <span>Your message is private. We'll reply to you personally on WhatsApp — never published without explicit permission.</span>
         </div>
-        <a href="https://wa.me/234800000000?text=Dear%20Heart%2C%20I%20need%20to%20talk..." class="btn-wa" target="_blank">
-          📩 &nbsp;Send to Dear Heart on WhatsApp
-        </a>
+        <button type="button" class="btn-wa" onclick="sendDearHeart()">📩&nbsp; Send to Dear Heart on WhatsApp</button>
       </div>
 
       <div class="dh-info fade-in">
@@ -1173,8 +1197,8 @@
           <h3 class="product-name">The Healing Heart Journal</h3>
           <p class="product-desc">52 weeks of guided prompts for processing heartbreak and rediscovering yourself.</p>
           <div class="product-footer">
-            <span class="product-price">₦7,500</span>
-            <button class="btn-add" onclick="addToCart('The Healing Heart Journal')">Add to Cart</button>
+            <span class="product-price">shs 7,500</span>
+            <button class="btn-add" onclick="BUY('The Healing Heart Journal', 'shs 7,500')">BUY</button>
           </div>
         </div>
       </div>
@@ -1189,8 +1213,8 @@
           <h3 class="product-name">Love Languages Masterclass</h3>
           <p class="product-desc">A 4-week live course on understanding attachment styles and building secure relationships.</p>
           <div class="product-footer">
-            <span class="product-price">₦25,000</span>
-            <button class="btn-add" onclick="addToCart('Love Languages Masterclass')">Enrol</button>
+            <span class="product-price">shs 25,000</span>
+            <button class="btn-add" onclick="BUY('Love Languages Masterclass', 'shs 25,000')">BUY</button>
           </div>
         </div>
       </div>
@@ -1202,8 +1226,8 @@
           <h3 class="product-name">"Still Blooming" Tee</h3>
           <p class="product-desc">Soft, oversized — for the days you're still figuring it out but showing up anyway.</p>
           <div class="product-footer">
-            <span class="product-price">₦12,000</span>
-            <button class="btn-add" onclick="addToCart('Still Blooming Tee')">Add to Cart</button>
+            <span class="product-price">shs 12,000</span>
+            <button class="btn-add" onclick="BUY('Still Blooming Tee', 'shs 12,000')">BUY</button>
           </div>
         </div>
       </div>
@@ -1215,8 +1239,8 @@
           <h3 class="product-name">Self-Love Workbook</h3>
           <p class="product-desc">Exercises to help you identify your needs, set boundaries, and build a deeper relationship with yourself.</p>
           <div class="product-footer">
-            <span class="product-price">₦5,500</span>
-            <button class="btn-add" onclick="addToCart('Self-Love Workbook')">Add to Cart</button>
+            <span class="product-price">shs 5,500</span>
+            <button class="btn-add" onclick="BUY('Self-Love Workbook', 'shs 5,500')">BUY</button>
           </div>
         </div>
       </div>
@@ -1228,8 +1252,8 @@
           <h3 class="product-name">Communicating in Love</h3>
           <p class="product-desc">Practical communication techniques for couples and individuals navigating hard conversations.</p>
           <div class="product-footer">
-            <span class="product-price">₦18,000</span>
-            <button class="btn-add" onclick="addToCart('Communicating in Love')">Enrol</button>
+            <span class="product-price">shs 18,000</span>
+            <button class="btn-add" onclick="BUY('Communicating in Love', 'shs 18,000')">BUY</button>
           </div>
         </div>
       </div>
@@ -1241,8 +1265,8 @@
           <h3 class="product-name">Open Heart Mug</h3>
           <p class="product-desc">Ceramic mug with your favourite quote from Open Pages. Perfect morning companion.</p>
           <div class="product-footer">
-            <span class="product-price">₦6,000</span>
-            <button class="btn-add" onclick="addToCart('Open Heart Mug')">Add to Cart</button>
+            <span class="product-price">shs 6,000</span>
+            <button class="btn-add" onclick="BUY('Open Heart Mug', 'shs 6,000')">BUY</button>
           </div>
         </div>
       </div>
@@ -1306,9 +1330,9 @@
       <div class="footer-col">
         <h4>Submit</h4>
         <ul>
-          <li><a href="#" onclick="openSubmitModal()">Submit a Poem</a></li>
-          <li><a href="#" onclick="openSubmitModal()">Submit an Article</a></li>
-          <li><a href="#" onclick="openSubmitModal()">Submit a Blog</a></li>
+          <li><a href="#" onclick="openSubmitModal(); return false;">Submit a Poem</a></li>
+          <li><a href="#" onclick="openSubmitModal(); return false;">Submit an Article</a></li>
+          <li><a href="#" onclick="openSubmitModal(); return false;">Submit a Blog</a></li>
           <li><a href="#dear-heart">Write to Dear Heart</a></li>
         </ul>
       </div>
@@ -1339,13 +1363,14 @@
     <button class="modal-close" onclick="closeSubmitModal()">✕</button>
     <h3>Submit Your Writing</h3>
     <p>Share your poem, article, or blog post with the Open Heart community. We review every submission with care and publish weekly.</p>
+    <div class="form-error" id="submitError">Please add your name, a title, and your writing before submitting.</div>
     <div class="form-group">
       <label>Your Name</label>
-      <input type="text" placeholder="How you'd like to be credited"/>
+      <input type="text" id="subName" placeholder="How you'd like to be credited"/>
     </div>
     <div class="form-group">
       <label>Type of Writing</label>
-      <select>
+      <select id="subType">
         <option value="">Select type...</option>
         <option>Poem</option>
         <option>Personal Essay</option>
@@ -1356,17 +1381,17 @@
     </div>
     <div class="form-group">
       <label>Title</label>
-      <input type="text" placeholder="Title of your piece"/>
+      <input type="text" id="subTitle" placeholder="Title of your piece"/>
     </div>
     <div class="form-group">
       <label>Your Writing</label>
-      <textarea style="min-height:180px" placeholder="Paste your writing here..."></textarea>
+      <textarea id="subWriting" style="min-height:180px" placeholder="Paste your writing here..."></textarea>
     </div>
     <div class="form-group">
       <label>Email Address</label>
-      <input type="email" placeholder="So we can let you know when it's published"/>
+      <input type="email" id="subEmail" placeholder="So we can let you know when it's published"/>
     </div>
-    <button class="btn-primary" style="width:100%;text-align:center;border:none;cursor:pointer;padding:1rem;font-size:1rem;" onclick="handleSubmit()">Submit My Writing ✨</button>
+    <button type="button" class="btn-primary" style="width:100%;text-align:center;border:none;cursor:pointer;padding:1rem;font-size:1rem;" onclick="handleSubmit()">Submit My Writing ✨</button>
   </div>
 </div>
 
@@ -1374,6 +1399,10 @@
 <div class="toast" id="toast">🛒 Added to cart!</div>
 
 <script>
+  // ── CONFIG ──
+  // WhatsApp number in international format, digits only, no + or spaces.
+  const WHATSAPP_NUMBER = "8615036187927"; // +86 150 3618 7927
+
   // Fade-in on scroll
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
@@ -1405,16 +1434,73 @@
     if(e.target === this) closeSubmitModal();
   });
 
-  function handleSubmit() {
-    closeSubmitModal();
-    showToast('✨ Submitted! We\'ll be in touch soon.');
+  // Builds a wa.me link and opens it in a new tab so the typed content
+  // actually travels into the WhatsApp message body.
+  function openWhatsApp(message) {
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
   }
 
-  // Cart toast
-  let cartCount = 0;
-  function addToCart(name) {
-    cartCount++;
-    showToast(`🛒 "${name}" added to cart!`);
+  function sendDearHeart() {
+    const name = document.getElementById('dhName').value.trim() || 'Anonymous';
+    const topic = document.getElementById('dhTopic').value;
+    const message = document.getElementById('dhMessage').value.trim();
+    const phone = document.getElementById('dhPhone').value.trim();
+    const errorBox = document.getElementById('dhError');
+
+    if (!message || !phone) {
+      errorBox.classList.add('show');
+      return;
+    }
+    errorBox.classList.remove('show');
+
+    const lines = [
+      "Dear Heart, I need to talk.",
+      `Name: ${name}`,
+      topic ? `Topic: ${topic}` : null,
+      `Message: ${message}`,
+      `Reply number: ${phone}`,
+    ].filter(Boolean);
+
+    openWhatsApp(lines.join("\n"));
+    showToast('💌 Opening WhatsApp with your message...');
+  }
+
+  function handleSubmit() {
+    const name = document.getElementById('subName').value.trim();
+    const type = document.getElementById('subType').value;
+    const title = document.getElementById('subTitle').value.trim();
+    const writing = document.getElementById('subWriting').value.trim();
+    const email = document.getElementById('subEmail').value.trim();
+    const errorBox = document.getElementById('submitError');
+
+    if (!name || !title || !writing) {
+      errorBox.classList.add('show');
+      return;
+    }
+    errorBox.classList.remove('show');
+
+    const lines = [
+      "New submission to Open Pages:",
+      `Name: ${name}`,
+      type ? `Type: ${type}` : null,
+      `Title: ${title}`,
+      email ? `Email: ${email}` : null,
+      "",
+      "Writing:",
+      writing,
+    ].filter(Boolean);
+
+    openWhatsApp(lines.join("\n"));
+    closeSubmitModal();
+    showToast('✨ Opening WhatsApp to send your submission...');
+  }
+
+  // Shop buy → WhatsApp
+  function BUY(name, price) {
+    const message = `Hi! I'd like to buy: ${name} (${price || ''}). Please tell me how to pay and receive it.`;
+    openWhatsApp(message);
+    showToast(`🛒 Opening WhatsApp to order "${name}"...`);
   }
 
   function showToast(msg) {
