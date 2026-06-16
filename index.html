@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Open Heart — Stories, Love & Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,400;1,600&display=swap" rel="stylesheet"/>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF6F0;
+    --warm-white: #FFFDF9;
+    --ink: #1C1410;
+    --soft-ink: #3D2B1F;
+    --terracotta: #C4603A;
+    --blush: #E8B4A0;
+    --sage: #7A9E7E;
+    --gold: #C9933A;
+    --muted: #9B8275;
+    --border: #E2D5C8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,246,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--terracotta);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { font-style: italic; }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--soft-ink);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-cta {
+    background: var(--terracotta);
+    color: white !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--soft-ink) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    border: 2px solid var(--terracotta);
+  }
+
+  .btn-primary:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 2px solid var(--border);
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  .hero-right {
+    position: relative;
+    background: var(--blush);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-art {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #E8B4A0 0%, #C4603A22 40%, #7A9E7E33 100%);
+  }
+
+  .hero-quote-card {
+    position: relative; z-index: 2;
+    background: rgba(255,253,249,0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    max-width: 360px;
+    margin: 2rem;
+    box-shadow: 0 20px 60px rgba(196,96,58,0.15);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .hero-quote-author {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-deco-circles {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,96,58,0.2);
+    top: 10%; right: -50px;
+    animation: spin 30s linear infinite;
+  }
+
+  .hero-deco-circles::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,96,58,0.15);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-header { text-align: center; margin-bottom: 4rem; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    background: rgba(196,96,58,0.08);
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-style: italic;
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── OPEN PAGES ── */
+  .open-pages { background: var(--warm-white); }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .post-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .post-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(196,96,58,0.12);
+    border-color: var(--blush);
+  }
+
+  .post-card-img {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .post-card-img.poem { background: linear-gradient(135deg, #F5EDE8, #E8D5CC); }
+  .post-card-img.article { background: linear-gradient(135deg, #E8EFF0, #D5E8D5); }
+  .post-card-img.blog { background: linear-gradient(135deg, #F0EBE0, #E8DFC8); }
+
+  .post-type-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    color: var(--soft-ink);
+    font-weight: 500;
+  }
+
+  .post-card-body { padding: 1.5rem; }
+
+  .post-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .post-card-excerpt {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .post-card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .post-author { display: flex; align-items: center; gap: 0.5rem; }
+
+  .avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    background: var(--blush);
+    color: var(--terracotta);
+    font-weight: 600;
+  }
+
+  .submit-banner {
+    margin-top: 3rem;
+    background: linear-gradient(135deg, var(--terracotta), #A34D2A);
+    border-radius: 1.5rem;
+    padding: 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .submit-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .submit-banner p {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    max-width: 460px;
+    line-height: 1.6;
+  }
+
+  .btn-white {
+    background: white;
+    color: var(--terracotta);
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+
+  .btn-white:hover {
+    background: var(--cream);
+    transform: translateY(-2px);
+  }
+
+  /* ── DEAR HEART ── */
+  .dear-heart {
+    background: linear-gradient(160deg, #1C1410 0%, #2E1A0F 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dear-heart::before {
+    content: '♡';
+    position: absolute;
+    font-size: 30rem;
+    opacity: 0.03;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .dear-heart .section-tag {
+    color: var(--blush);
+    background: rgba(232,180,160,0.1);
+  }
+
+  .dear-heart .section-title { color: white; }
+
+  .dear-heart .section-desc {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .dh-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .dh-form-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .form-group { margin-bottom: 1.5rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--blush);
+  }
+
+  .form-group select option { background: #2E1A0F; }
+
+  .form-group textarea { min-height: 140px; }
+
+  .whatsapp-note {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    background: rgba(37,211,102,0.1);
+    border: 1px solid rgba(37,211,102,0.2);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .wa-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .btn-wa {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    width: 100%;
+    background: #25D366;
+    color: white;
+    padding: 1rem;
+    border-radius: 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-wa:hover {
+    background: #1ebe59;
+    transform: translateY(-2px);
+  }
+
+  .dh-info { position: relative; z-index: 1; }
+
+  .dh-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+
+  .dh-info h3 em { font-style: italic; color: var(--blush); }
+
+  .dh-info p {
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .dh-steps { list-style: none; }
+
+  .dh-steps li {
+    display: flex; gap: 1rem;
+    margin-bottom: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--terracotta);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .step-text { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+  .step-text strong { color: white; display: block; margin-bottom: 0.2rem; }
+
+  /* ── SHOP ── */
+  .shop { background: var(--cream); }
+
+  .shop-tabs {
+    display: flex; gap: 0.5rem; justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: white;
+  }
+
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  }
+
+  .product-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.03) 100%);
+  }
+
+  .pi-journal { background: linear-gradient(135deg, #F5EDE8 0%, #DEB99A 100%); }
+  .pi-merch { background: linear-gradient(135deg, #E8F0EB 0%, #A8C5A8 100%); }
+  .pi-course { background: linear-gradient(135deg, #EBE8F5 0%, #B4A8D8 100%); }
+
+  .badge-new {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--terracotta);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2rem;
+    z-index: 2;
+  }
+
+  .product-body { padding: 1.3rem; }
+
+  .product-category {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .product-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+  }
+
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .product-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  .btn-add {
+    background: var(--ink);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  .btn-add:hover {
+    background: var(--terracotta);
+    transform: scale(1.04);
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--warm-white);
+    border-top: 1px solid var(--border);
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-img-wrap {
+    position: relative;
+  }
+
+  .about-img-main {
+    width: 100%;
+    height: 420px;
+    background: linear-gradient(135deg, var(--blush), var(--terracotta));
+    border-radius: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-img-main::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, transparent 40%, rgba(0,0,0,0.15) 100%);
+  }
+
+  .about-quote-float {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 220px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .about-quote-float p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-quote-float span {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .about-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .about-content h2 em { font-style: italic; color: var(--terracotta); }
+
+  .about-content p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--terracotta);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: white;
+    padding: 4rem 2rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--blush);
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand-name span { font-style: italic; }
+
+  .footer-brand p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.7rem; }
+
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--blush); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .social-links { display: flex; gap: 1rem; }
+  .social-links a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+  }
+
+  .social-links a:hover { color: var(--blush); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(28,20,16,0.7);
+    backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    max-width: 540px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.35s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; font-size: 1.5rem;
+    cursor: pointer; color: var(--muted);
+  }
+
+  .modal h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+
+  .modal .form-group label { color: var(--muted); }
+
+  .modal .form-group input,
+  .modal .form-group select,
+  .modal .form-group textarea {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+
+  .modal .form-group input:focus,
+  .modal .form-group select:focus,
+  .modal .form-group textarea:focus {
+    border-color: var(--terracotta);
+  }
+
+  .modal .form-group select option { background: white; }
+
+  /* ── CART TOAST ── */
+  .toast {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
+    background: var(--ink);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    transform: translateY(120%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .toast.show { transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 4rem 2rem; }
+    .dh-layout { grid-template-columns: 1fr; }
+    .about-layout { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">A Word from<span>  Ayzee</span></a>
+  <ul class="nav-links">
+    <li><a href="#open-pages">Open Pages</a></li>
+    <li><a href="#dear-heart">Dear Heart</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#" class="nav-cta" onclick="openSubmitModal()">Submit Your Story</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Stories · Love · Growth</p>
+    <h1 class="hero-title">
+      A space where <em>hearts</em> speak freely
+    </h1>
+    <p class="hero-subtitle">
+      Open Pages for your words. Dear Heart for your struggles. A shop that feeds your growth. All in one honest corner of the internet.
+    </p>
+    <div class="hero-actions">
+      <a href="#open-pages" class="btn-primary">Read Open Pages</a>
+      <a href="#dear-heart" class="btn-outline">Write to Us</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-art"></div>
+    <div class="hero-deco-circles"></div>
+    <div class="hero-quote-card">
+      <p class="hero-quote-text">"The most courageous act is still to think for yourself. Aloud."</p>
+      <p class="hero-quote-author">— Submitted by Amara T., Community Member</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN PAGES -->
+<section class="open-pages" id="open-pages">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Open Pages</span>
+      <h2 class="section-title">Your Words, Our Stage</h2>
+      <p class="section-desc">Blogs, poems, personal essays — submitted by real people living real lives. Every story deserves to be heard.</p>
+    </div>
+
+    <div class="posts-grid">
+      <div class="post-card fade-in">
+        <div class="post-card-img poem">
+          <span class="post-type-badge">Poem</span>
+          🌸
+        </div>
+        <div class="post-card-body">
+          <h3 class="post-card-title">Between the Lines of a Text Message</h3>
+          <p class="post-card-excerpt">Sometimes love looks like three dots appearing then disappearing, and learning to breathe in that silence...</p>
+          <div class="post-card-footer">
+            <div class="post-author">
+              <div class="avatar">ZK</div>
+              <span>Zara K.</span>
+            </div>
+            <span>4 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card fade-in">
+        <div class="post-card-img article">
+          <span class="post-type-badge">Article</span>
+          💭
+        </div>
+        <div class="post-card-body">
+          <h3 class="post-card-title">Why We Keep Going Back to People Who Hurt Us</h3>
+          <p class="post-card-excerpt">A deep dive into anxious attachment, the comfort of familiarity, and the hard work of choosing differently...</p>
+          <div class="post-card-footer">
+            <div class="post-author">
+              <div class="avatar">TA</div>
+              <span>Temi A.</span>
+            </div>
+            <span>8 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-card fade-in">
+        <div class="post-card-img blog">
+          <span class="post-type-badge">Blog</span>
+          ✍️
+        </div>
+        <div class="post-card-body">
+          <h3 class="post-card-title">The Morning I Chose Myself and It Broke My Heart</h3>
+          <p class="post-card-excerpt">Leaving wasn't dramatic. It was quiet, it was coffee going cold, it was finally picking up my keys...</p>
+          <div class="post-card-footer">
+            <div class="post-author">
+              <div class="avatar">NF</div>
+              <span>Nadia F.</span>
+            </div>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-banner fade-in">
+      <div>
+        <h3>Got something to say?</h3>
+        <p>Submit your poem, blog post, or personal essay. Every voice adds a new colour to our tapestry. We publish weekly.</p>
+      </div>
+      <a href="#" class="btn-white" onclick="openSubmitModal(); return false;">Submit Your Writing →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DEAR HEART -->
+<section class="dear-heart" id="dear-heart">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Dear Heart</span>
+      <h2 class="section-title" style="color:white">Tell Us What's Hurting</h2>
+      <p class="section-desc">No judgement. No bots. A real human reads your message and writes back to you — personally — on WhatsApp.</p>
+    </div>
+
+    <div class="dh-layout">
+      <div class="dh-form-card fade-in">
+        <div class="form-group">
+          <label>Your Name (or stay anonymous)</label>
+          <input type="text" placeholder="e.g. Chiamaka or just 'anonymous'"/>
+        </div>
+        <div class="form-group">
+          <label>What area of your relationship needs attention?</label>
+          <select>
+            <option value="">Choose a topic...</option>
+            <option>Long distance & communication</option>
+            <option>Breakup & healing</option>
+            <option>Trust & jealousy</option>
+            <option>Family & in-laws</option>
+            <option>Self-love & boundaries</option>
+            <option>Infidelity & betrayal</option>
+            <option>Other — I'll explain below</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Share what's on your heart</label>
+          <textarea placeholder="Write as much or as little as you need. We read everything..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Your WhatsApp number (so we can reply)</label>
+          <input type="tel" placeholder="+234 800 000 0000"/>
+        </div>
+        <div class="whatsapp-note">
+          <span class="wa-icon">🔒</span>
+          <span>Your message is private. We'll reply to you personally on WhatsApp — never published without explicit permission.</span>
+        </div>
+        <a href="https://wa.me/234800000000?text=Dear%20Heart%2C%20I%20need%20to%20talk..." class="btn-wa" target="_blank">
+          📩 &nbsp;Send to Dear Heart on WhatsApp
+        </a>
+      </div>
+
+      <div class="dh-info fade-in">
+        <h3>Real talk from <em>real hearts</em> — not algorithms</h3>
+        <p>Dear Heart is our most personal offering. When life feels tangled — when you don't know who to talk to — you can talk to us. We show up, we read, and we write back with care.</p>
+        <p>This isn't a chatbot. It's a person — someone who has lived, loved, and learned — taking time for your story.</p>
+        <ul class="dh-steps">
+          <li>
+            <span class="step-num">1</span>
+            <div class="step-text">
+              <strong>Share your situation</strong>
+              Fill the form or message us directly on WhatsApp. Use your name or stay anonymous.
+            </div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div class="step-text">
+              <strong>We read it — personally</strong>
+              Every submission is read by our team. No auto-replies, no templates.
+            </div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div class="step-text">
+              <strong>We write back on WhatsApp</strong>
+              A thoughtful, personalised response is sent to you within 48–72 hours.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="shop" id="shop">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Shop</span>
+      <h2 class="section-title">Tools for Your Journey</h2>
+      <p class="section-desc">Journal guides, merchandise, and courses crafted to help you love yourself and others better.</p>
+    </div>
+
+    <div class="shop-tabs fade-in">
+      <button class="tab-btn active" onclick="filterShop('all', this)">All</button>
+      <button class="tab-btn" onclick="filterShop('journal', this)">Journal Guides</button>
+      <button class="tab-btn" onclick="filterShop('course', this)">Courses</button>
+      <button class="tab-btn" onclick="filterShop('merch', this)">Merchandise</button>
+    </div>
+
+    <div class="shop-grid" id="shopGrid">
+      <div class="product-card fade-in" data-cat="journal">
+        <div class="product-img pi-journal">📓</div>
+        <div class="product-body">
+          <p class="product-category">Journal Guide</p>
+          <h3 class="product-name">The Healing Heart Journal</h3>
+          <p class="product-desc">52 weeks of guided prompts for processing heartbreak and rediscovering yourself.</p>
+          <div class="product-footer">
+            <span class="product-price">₦7,500</span>
+            <button class="btn-add" onclick="addToCart('The Healing Heart Journal')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in" data-cat="course">
+        <div class="product-img pi-course">
+          <span class="badge-new">New</span>
+          🎓
+        </div>
+        <div class="product-body">
+          <p class="product-category">Course</p>
+          <h3 class="product-name">Love Languages Masterclass</h3>
+          <p class="product-desc">A 4-week live course on understanding attachment styles and building secure relationships.</p>
+          <div class="product-footer">
+            <span class="product-price">₦25,000</span>
+            <button class="btn-add" onclick="addToCart('Love Languages Masterclass')">Enrol</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in" data-cat="merch">
+        <div class="product-img pi-merch">👕</div>
+        <div class="product-body">
+          <p class="product-category">Merchandise</p>
+          <h3 class="product-name">"Still Blooming" Tee</h3>
+          <p class="product-desc">Soft, oversized — for the days you're still figuring it out but showing up anyway.</p>
+          <div class="product-footer">
+            <span class="product-price">₦12,000</span>
+            <button class="btn-add" onclick="addToCart('Still Blooming Tee')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in" data-cat="journal">
+        <div class="product-img pi-journal">✏️</div>
+        <div class="product-body">
+          <p class="product-category">Journal Guide</p>
+          <h3 class="product-name">Self-Love Workbook</h3>
+          <p class="product-desc">Exercises to help you identify your needs, set boundaries, and build a deeper relationship with yourself.</p>
+          <div class="product-footer">
+            <span class="product-price">₦5,500</span>
+            <button class="btn-add" onclick="addToCart('Self-Love Workbook')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in" data-cat="course">
+        <div class="product-img pi-course">💬</div>
+        <div class="product-body">
+          <p class="product-category">Course</p>
+          <h3 class="product-name">Communicating in Love</h3>
+          <p class="product-desc">Practical communication techniques for couples and individuals navigating hard conversations.</p>
+          <div class="product-footer">
+            <span class="product-price">₦18,000</span>
+            <button class="btn-add" onclick="addToCart('Communicating in Love')">Enrol</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in" data-cat="merch">
+        <div class="product-img pi-merch">❤️💝☕</div>
+        <div class="product-body">
+          <p class="product-category">Merchandise</p>
+          <h3 class="product-name">Open Heart Mug</h3>
+          <p class="product-desc">Ceramic mug with your favourite quote from Open Pages. Perfect morning companion.</p>
+          <div class="product-footer">
+            <span class="product-price">₦6,000</span>
+            <button class="btn-add" onclick="addToCart('Open Heart Mug')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-layout">
+      <div class="about-img-wrap fade-in">
+        <div class="about-img-main">💛</div>
+        <div class="about-quote-float">
+          <p>"We started this because we needed it ourselves."</p>
+          <span>— The Founders</span>
+        </div>
+      </div>
+      <div class="about-content fade-in">
+        <span class="section-tag">Our Story</span>
+        <h2>Built by <em>believers</em> in honest love</h2>
+        <p>The Open Heart started as a conversation between two friends who were tired of pretending relationships were simple. We wanted a place where people could be honest about love without being judged — where your pain could find words, and your words could find a home.</p>
+        <p>Today we're a growing community of writers, seekers, and lovers — people who believe that being vulnerable takes courage, and courage deserves to be celebrated.</p>
+        <p>We write back. We publish. We sell things that actually help. And we do all of it with care.</p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number">1.2K+</span>
+            <span class="stat-label">Stories published</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">800+</span>
+            <span class="stat-label">Hearts reached</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">200+</span>
+            <span class="stat-label">Dear Heart replies</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">The Open <span>Heart</span></div>
+        <p>A community space for stories, struggles, and growth. Every heart is welcome here.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#open-pages">Open Pages</a></li>
+          <li><a href="#dear-heart">Dear Heart</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Submit</h4>
+        <ul>
+          <li><a href="#" onclick="openSubmitModal()">Submit a Poem</a></li>
+          <li><a href="#" onclick="openSubmitModal()">Submit an Article</a></li>
+          <li><a href="#" onclick="openSubmitModal()">Submit a Blog</a></li>
+          <li><a href="#dear-heart">Write to Dear Heart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 The Open Heart. Made with love.</span>
+      <div class="social-links">
+        <a href="#">📸</a>
+        <a href="#">💬</a>
+        <a href="#">🐦</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SUBMIT MODAL -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSubmitModal()">✕</button>
+    <h3>Submit Your Writing</h3>
+    <p>Share your poem, article, or blog post with the Open Heart community. We review every submission with care and publish weekly.</p>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" placeholder="How you'd like to be credited"/>
+    </div>
+    <div class="form-group">
+      <label>Type of Writing</label>
+      <select>
+        <option value="">Select type...</option>
+        <option>Poem</option>
+        <option>Personal Essay</option>
+        <option>Blog Post</option>
+        <option>Article</option>
+        <option>Short Story</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" placeholder="Title of your piece"/>
+    </div>
+    <div class="form-group">
+      <label>Your Writing</label>
+      <textarea style="min-height:180px" placeholder="Paste your writing here..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="So we can let you know when it's published"/>
+    </div>
+    <button class="btn-primary" style="width:100%;text-align:center;border:none;cursor:pointer;padding:1rem;font-size:1rem;" onclick="handleSubmit()">Submit My Writing ✨</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">🛒 Added to cart!</div>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Shop filter
+  function filterShop(cat, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+
+  // Modal
+  function openSubmitModal() {
+    document.getElementById('submitModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSubmitModal() {
+    document.getElementById('submitModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('submitModal').addEventListener('click', function(e) {
+    if(e.target === this) closeSubmitModal();
+  });
+
+  function handleSubmit() {
+    closeSubmitModal();
+    showToast('✨ Submitted! We\'ll be in touch soon.');
+  }
+
+  // Cart toast
+  let cartCount = 0;
+  function addToCart(name) {
+    cartCount++;
+    showToast(`🛒 "${name}" added to cart!`);
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
+</body>
+</html>
